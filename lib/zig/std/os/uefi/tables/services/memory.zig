@@ -12,7 +12,7 @@ pub const MemoryServices = extern struct {
     getMemoryMap: fn (*usize, [*]MemoryDescriptor, *usize, *usize, *u32) callconv(.C) Status,
     
     /// Allocates pool memory.
-    allocatePool: fn (usize, usize, *?*c_void) callconv(.C) Status,
+    allocatePool: fn (MemoryType, usize, **c_void) callconv(.C) Status,
     
     /// Returns pool memory to the system.
     freePool: fn ([*]align(8) u8) callconv(.C) Status,
@@ -27,7 +27,7 @@ pub const AllocateType = extern enum(usize) {
 pub const MemoryType = extern enum(usize) {
     ReservedMemoryType,
     LoaderCode,
-    LoaderData = 2,
+    LoaderData,
     BootServicesCode,
     BootServicesData,
     RuntimeServicesCode,
