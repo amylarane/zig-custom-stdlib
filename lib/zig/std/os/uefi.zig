@@ -92,7 +92,7 @@ pub const Time = extern struct {
     _pad2: u8,
 
     /// Time is to be interpreted as local time
-    pub const unspecified_timezone: i16 = 0x7ff;
+    pub const unspecified_timezone: i16 = 0x7ff;    
 };
 
 /// Capabilities of the clock device

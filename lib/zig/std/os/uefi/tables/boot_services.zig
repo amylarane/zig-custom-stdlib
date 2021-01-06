@@ -36,6 +36,8 @@ const DriverSupportServices = @import("services/driver_support.zig").DriverSuppo
 const OpenCloseProtocolServices = @import("services/open_close_protocol.zig").OpenCloseProtocolServices;
 const LibraryServices = @import("services/library.zig").LibraryServices;
 
+const EventNotify = fn(Event, ?*c_void) callconv(.C) void;
+
 pub const BootServices = extern struct {
     hdr: TableHeader, 
     
@@ -55,7 +57,7 @@ pub const BootServices = extern struct {
     library: LibraryServices,      
     buffer: BufferServices,   
 
-    createEventEx: Status, // TODO
+    createEventEx: fn(u32, usize, EventNotify, ?*c_void, *align(8) const Guid, ?*Event) callconv(.C) Status, // TODO
 
     pub const signature: u64 = 0x56524553544f4f42;
 };
