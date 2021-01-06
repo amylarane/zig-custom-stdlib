@@ -23,7 +23,6 @@ pub const ProtocolHandlerServices = extern struct {
     /// Returns an array of handles that support a specified protocol.
     locateHandle: fn (LocateSearchType, ?*align(8) const Guid, ?*const c_void, *usize, [*]Handle) callconv(.C) Status,
 
-    locateDevicePath: Status, // TODO
-    installConfigurationTable: Status, // TODO
+    locateDevicePath: fn (*align(8) const Guid, ?**DevicePathProtocol, ?*Handle) callconv(.C) Status, // TODO
 };
 

@@ -13,6 +13,7 @@ const LocateSearchType = uefi.tables.LocateSearchType;
 
 //const InterfaceType = uefi.InterfaceType;
 
+
 /// Boot services are services provided by the system's firmware until the operating system takes
 /// over control over the hardware by calling exitBootServices.
 ///
@@ -41,7 +42,8 @@ pub const BootServices = extern struct {
     task: TaskServices,
     memory: MemoryServices,
     event_timer: EventTimerServices,
-    protocol_handler: ProtocolHandlerServices,   
+    protocol_handler: ProtocolHandlerServices, 
+    installConfigurationTable: fn(*align(8) const Guid, *?*c_void) callconv(.C) Status,    
     image: ImageServices,
     
     getNextMonotonicCount: fn (*u64) callconv(.C) Status,

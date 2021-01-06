@@ -17,6 +17,7 @@ pub const LibraryServices = extern struct {
     /// Returns the first protocol instance that matches the given protocol.
     locateProtocol: fn (*align(8) const Guid, ?*const c_void, *?*c_void) callconv(.C) Status,
 
-    installMultipleProtocolInterfaces: Status, // TODO
-    uninstallMultipleProtocolInterfaces: Status, // TODO
+    /// Install one or more protocol interfaces into the boot services environment
+    installMultipleProtocolInterfaces: fn(?*Handle, ...) callconv(.C) Status,
+    uninstallMultipleProtocolInterfaces: fn(Handle, ...) callconv(.C) Status, // TODO
 };
