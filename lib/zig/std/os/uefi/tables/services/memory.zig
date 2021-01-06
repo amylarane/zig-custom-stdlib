@@ -27,7 +27,7 @@ pub const AllocateType = extern enum(usize) {
 pub const MemoryType = extern enum(usize) {
     ReservedMemoryType,
     LoaderCode,
-    LoaderData = 2,
+    LoaderData,
     BootServicesCode,
     BootServicesData,
     RuntimeServicesCode,
