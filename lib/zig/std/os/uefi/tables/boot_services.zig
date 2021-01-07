@@ -45,9 +45,9 @@ pub const BootServices = extern struct {
     memory: MemoryServices,
     event_timer: EventTimerServices,
     protocol_handler: ProtocolHandlerServices, 
+    
     installConfigurationTable: fn(*align(8) const Guid, *?*c_void) callconv(.C) Status,    
     image: ImageServices,
-    
     getNextMonotonicCount: fn (*u64) callconv(.C) Status,
     stall: fn (usize) callconv(.C) Status,
     setWatchdogTimer: fn (usize, u64, usize, ?[*]const u16) callconv(.C) Status,
