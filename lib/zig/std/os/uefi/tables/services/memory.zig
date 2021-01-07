@@ -18,13 +18,13 @@ pub const MemoryServices = extern struct {
     freePool: fn ([*]align(8) u8) callconv(.C) Status,
 };
 
-pub const AllocateType = extern enum(usize) {
+pub const AllocateType = extern enum(u32) {
     AllocateAnyPages,
     AllocateMaxAddress,
     AllocateAddress,
 };
 
-pub const MemoryType = extern enum(usize) {
+pub const MemoryType = extern enum(u32) {
     ReservedMemoryType,
     LoaderCode,
     LoaderData,
