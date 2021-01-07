@@ -22,7 +22,7 @@ pub const RuntimeServices = extern struct {
     hdr: TableHeader,
 
     /// Returns the current time and date information, and the time-keeping capabilities of the hardware platform.
-    getTime: fn (*Time, ?*TimeCapabilities) callconv(.C) Status,
+    _getTime: fn (*Time, ?*TimeCapabilities) callconv(.C) Status,
 
     setTime: fn (*Time) callconv(.C) Status, // TODO
     getWakeupTime: fn (*bool, *bool, *Time) callconv(.C) Status, // TODO
@@ -49,6 +49,12 @@ pub const RuntimeServices = extern struct {
     queryVariableInfo: Status, // TODO
 
     pub const signature: u64 = 0x56524553544e5552;
+    
+    pub fn getTime(self: RuntimeServices) Time {
+        var t: Time = undefined; 
+        _ = self._getTime(&t, null);
+        return t;
+    }
 };
 
 pub const ResetType = extern enum(u32) {

@@ -24,6 +24,12 @@ pub const SimpleTextInputProtocol = extern struct {
     pub fn readKeyStroke(self: *const SimpleTextInputProtocol, input_key: *InputKey) Status {
         return self._read_key_stroke(self, input_key);
     }
+    
+    pub fn getKey(self: *const SimpleTextInputProtocol) u16 {
+        var key: uefi.protocols.InputKey = undefined;
+        _ = self.readKeyStroke(&key);
+        return key.unicode_char;
+}
 
     pub const guid align(8) = Guid{
         .time_low = 0x387477c1,

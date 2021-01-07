@@ -15,7 +15,7 @@ pub const MemoryServices = extern struct {
     allocatePool: fn (MemoryType, usize, *[]u8) callconv(.C) Status,
     
     /// Returns pool memory to the system.
-    freePool: fn ([*]align(8) u8) callconv(.C) Status,
+    freePool: fn ([]u8) callconv(.C) Status,
 };
 
 pub const AllocateType = extern enum(u32) {
