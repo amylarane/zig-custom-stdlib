@@ -775,7 +775,7 @@ pub fn formatZigEscapes(
     for (bytes) |byte| switch (byte) {
         '\n' => try writer.writeAll("\\n"),
         '\r' => try writer.writeAll("\\r"),
-        '\t' => try writer.writeAll("\\t"),
+        '\t' => try writer.writeAll("\t"),
         '\\' => try writer.writeAll("\\\\"),
         '"' => try writer.writeAll("\\\""),
         '\'' => try writer.writeAll("\\'"),
