@@ -4,6 +4,7 @@
 // The MIT license requires this copyright notice to be included in all copies
 // and substantial portions of the software.
 /// A protocol is an interface identified by a GUID.
+const std = @import("std");
 pub const protocols = @import("uefi/protocols.zig");
 
 /// Status codes returned by EFI interfaces
@@ -90,6 +91,24 @@ pub const Time = extern struct {
         adjust_daylight: bool,
     },
     _pad2: u8,
+    
+    pub fn format(
+        self: @This(),
+        comptime f: []const u8,
+        options: std.fmt.FormatOptions,
+        out_stream: anytype,
+    ) !void {
+        if (f.len == 0) {
+            return std.fmt.format(out_stream, 
+            "{d:0>2}:{d:0>2}:{d:0>2} {}/{}/{}",
+            .{
+                self.hour,self.minute,self.second,
+                self.day, self.month, self.year
+            });
+        } else {
+            @compileError("Unknown format character: '" ++ f ++ "'");
+        }
+    }
 
     /// Time is to be interpreted as local time
     pub const unspecified_timezone: i16 = 0x7ff;    
